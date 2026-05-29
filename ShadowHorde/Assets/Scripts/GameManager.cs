@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (paused) return;
-        score += Mathf.RoundToInt(Time.deltaTime * 10);
+
         scoreText.text = $"Score: {score}";
         levelText.text = $"Nível {playerStats.level}";
         healthBar.value = playerStats.currentHealth / playerStats.maxHealth;

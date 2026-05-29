@@ -51,6 +51,7 @@ public class EnemyAI : MonoBehaviour
     void Die()
     {
         player?.GetComponent<PlayerStats>()?.AddXP(xpReward);
+        GameManager.Instance?.AddScore(1);
         Destroy(gameObject);
     }
 
