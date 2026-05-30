@@ -8,9 +8,16 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
 
     Rigidbody2D rb;
+    Animator anim;
+    SpriteRenderer sr;
     Vector2 input;
 
-    void Awake() => rb = GetComponent<Rigidbody2D>();
+    void Awake()
+    {
+        rb   = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();      // precisa de ter Animator no GameObject
+        sr   = GetComponent<SpriteRenderer>(); // precisa de ter SpriteRenderer no GameObject
+    }
 
     void Update()
     {
@@ -24,6 +31,14 @@ public class PlayerController : MonoBehaviour
         if (kb.sKey.isPressed || kb.downArrowKey.isPressed) y -= 1f;
 
         input = new Vector2(x, y).normalized;
+
+        // --- Animações ---
+        bool isMoving = input.magnitude > 0.1f;
+        anim.SetBool("isMoving", isMoving);
+
+        // Vira o sprite conforme a direção horizontal
+        if (input.x < 0) sr.flipX = true;
+        else if (input.x > 0) sr.flipX = false;
     }
 
     void FixedUpdate()
