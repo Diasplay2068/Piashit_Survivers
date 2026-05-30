@@ -95,10 +95,12 @@ public class GameManager : MonoBehaviour
         finalScoreText.text = $"Score final: {score}";
     }
 
-    public void Restart() =>
+    public void Restart()
+    {
+        Time.timeScale = 1f; // <-- adiciona esta linha
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
-
+    }
     // --- Helpers ---
     List<T> PickRandom<T>(List<T> src, int n)
     {
